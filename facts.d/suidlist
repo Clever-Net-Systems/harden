@@ -1,0 +1,4 @@
+#!/bin/bash
+#/bin/df --local -P | /bin/awk '{ if (NR!=1) print $6; }' | /bin/xargs -I '{}' /bin/find '{}' -xdev -type f \( -perm -4000 -o -perm -2000 \) | /bin/sort | /bin/xargs -I '{}' /bin/echo "-a always,exit -F path={} -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged"
+echo -n "suidlist="
+/bin/df --local -P | /bin/awk '{ if (NR!=1) print $6; }' | /bin/xargs -I '{}' /bin/find '{}' -xdev -type f \( -perm -4000 -o -perm -2000 \) | /bin/sort | tr '\n' '|'

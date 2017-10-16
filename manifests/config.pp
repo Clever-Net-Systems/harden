@@ -8,9 +8,17 @@ class harden::config {
     content => template('harden/90-cis.conf.erb'),
   } ~>
   exec {'/sbin/sysctl -p --system':
+    refreshonly => true,
   }
   file {'/etc/modprobe.d/CIS.conf':
     ensure => file,
     content => template('harden/CIS.conf.erb'),
+  }
+  file {'/etc/audit/rules.d/CIS.rules':
+    ensure => file,
+    content => template('harden/CIS.rules.erb'),
+  } ~>
+  exec {'/sbin/service auditd restart':
+    refreshonly => true,
   }
 }
