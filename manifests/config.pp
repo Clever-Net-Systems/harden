@@ -9,4 +9,8 @@ class harden::config {
   } ~>
   exec {'/sbin/sysctl -p --system':
   }
+  file {'/etc/modprobe.d/CIS.conf':
+    ensure => file,
+    content => template('harden/CIS.conf.erb'),
+  }
 }
