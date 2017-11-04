@@ -17,9 +17,13 @@ class harden (
 
   # validate parameters here
 
-#  class { '::harden::install': } ->
+  class { '::harden::grub': }
+  class { '::harden::install': }
+  class { '::harden::audit': }
+  class { '::harden::sysctl': }
+  class { '::harden::limits': }
+  class { '::harden::modprobe': } ->
   class { '::harden::config': } ->
-#  class { '::harden::config': } ~>
 #  class { '::harden::service': } ->
   Class['::harden']
 }

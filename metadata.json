@@ -1,6 +1,6 @@
 {
   "name": "cns-harden",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "cns",
   "summary": "Standard CIS / C2S hardening for EL6/7 (Red Hat and CentOS)",
   "license": "Apache 2.0",

@@ -5,12 +5,12 @@
 #
 class harden::params {
   case $::osfamily {
-    'Debian': {
-      $package_name = 'harden'
-      $service_name = 'harden'
-    }
-    'RedHat', 'Amazon': {
-      $package_name = 'harden'
+    #'Debian': {
+    #  $package_name = 'harden'
+    #  $service_name = 'harden'
+    #}
+    'RedHat': {
+      $package_name = "['scap-security-guide', 'aide']"
       $service_name = 'harden'
     }
     default: {

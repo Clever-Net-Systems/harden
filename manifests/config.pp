@@ -3,22 +3,10 @@
 # This class is called from harden for service config.
 #
 class harden::config {
-  file {'/etc/sysctl.d/90-cis.conf':
-    ensure => file,
-    content => template('harden/90-cis.conf.erb'),
-  } ~>
-  exec {'/sbin/sysctl -p --system':
-    refreshonly => true,
-  }
-  file {'/etc/modprobe.d/CIS.conf':
-    ensure => file,
-    content => template('harden/CIS.conf.erb'),
-  }
-  file {'/etc/audit/rules.d/CIS.rules':
-    ensure => file,
-    content => template('harden/CIS.rules.erb'),
-  } ~>
-  exec {'/sbin/service auditd restart':
-    refreshonly => true,
+  file_line { 'login_encrypt_method':
+    ensure => present,
+    path   => '/etc/login.defs',
+    line   => 'ENCRYPT_METHOD SHA512',
+    match  => '^ENCRYPT_METHOD',
   }
 }
