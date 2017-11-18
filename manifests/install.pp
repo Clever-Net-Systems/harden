@@ -4,7 +4,7 @@
 #
 class harden::install {
 
-  package { $::harden::package_name:
+  package { $harden::params::install_packages:
     ensure => present,
   }
 }

@@ -4,14 +4,19 @@
 # It sets variables according to platform.
 #
 class harden::params {
+  # Default is to activate all hardening items
+  $harden_grub      = true
+  $harden_audit     = true
+  $harden_sysctl    = true
+  $harden_limits    = true
+  $harden_modprobe  = true
+  $harden_logindefs = true
+  $install_packages = [ 'scap-security-guide', 'aide' ]
+
   case $::osfamily {
     #'Debian': {
-    #  $package_name = 'harden'
-    #  $service_name = 'harden'
     #}
     'RedHat': {
-      $package_name = "['scap-security-guide', 'aide']"
-      $service_name = 'harden'
     }
     default: {
       fail("${::operatingsystem} not supported")
